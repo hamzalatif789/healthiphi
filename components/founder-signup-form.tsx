@@ -1,29 +1,64 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements, useStripe, useElements } from '@stripe/react-stripe-js'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Badge } from "@/components/ui/badge"
-import { CardElement } from "./card-element"
+
 import { useLanguage } from "@/lib/language-context"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
+import { CardElementstrip } from "./cardelementstripe"
+import { useRouter } from "next/navigation"
+import { supabase } from "@/lib/supabase"
 
-export function FounderSignupForm() {
+// Initialize Stripe with the correct environment variable name
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+
+// Inner form component that uses Stripe hooks
+function FounderSignupFormInner() {
   const { t } = useLanguage()
+  const router = useRouter()
+  const stripe = useStripe()
+  const elements = useElements()
+
   const [formState, setFormState] = useState({
     name: "",
     email: "",
     seats: 1,
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [cardValid, setCardValid] = useState(false)
+  const [formErrors, setFormErrors] = useState({
+    name: "",
+    email: "",
+    card: ""
+  })
+  const [stripeReady, setStripeReady] = useState(false)
+
+  useEffect(() => {
+    // Check when Stripe is fully loaded
+    if (stripe && elements) {
+      setStripeReady(true)
+    }
+  }, [stripe, elements])
 
   const handleInputChange = (field: string, value: string | number) => {
     setFormState((prev) => ({ ...prev, [field]: value }))
+    
+    // Clear error when user types
+    if (field === "name" && formErrors.name) {
+      setFormErrors(prev => ({ ...prev, name: "" }))
+    }
+    if (field === "email" && formErrors.email) {
+      setFormErrors(prev => ({ ...prev, email: "" }))
+    }
   }
 
   const handleSliderChange = (value: number[]) => {
@@ -35,6 +70,14 @@ export function FounderSignupForm() {
     if (!isNaN(value) && value >= 1 && value <= 20) {
       setFormState((prev) => ({ ...prev, seats: value }))
     }
+  }
+
+  const handleCardChange = (isValid: boolean, error?: string) => {
+    setCardValid(isValid)
+    setFormErrors(prev => ({
+      ...prev,
+      card: error ? error : ""
+    }))
   }
 
   const getPrice = () => {
@@ -49,36 +92,115 @@ export function FounderSignupForm() {
     return "Community"
   }
 
+  const validateForm = () => {
+    const errors = {
+      name: formState.name.trim() ? "" : "Full name is required",
+      email: formState.email.trim() ? "" : "Email is required",
+      card: cardValid ? "" : "Valid card details are required"
+    }
+    
+    // Additional email validation
+    if (formState.email.trim() && !/^\S+@\S+\.\S+$/.test(formState.email)) {
+      errors.email = "Please enter a valid email address"
+    }
+    
+    setFormErrors(errors)
+    
+    return !errors.name && !errors.email && !errors.card
+  }
+
   const isFormValid = () => {
-    return formState.name.trim() && formState.email.trim()
+    return formState.name.trim() && formState.email.trim() && cardValid
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!isFormValid()) return
+    
+    if (!validateForm() || !stripe || !elements) {
+      return
+    }
 
     setIsSubmitting(true)
 
     try {
-      // In production, this would:
-      // 1. Create a Stripe Setup Intent to vault the payment method
-      // 2. Store the pledge in your database with status "pending"
-      // 3. Send confirmation email
-      // 4. Track analytics
-
-      console.log("Founder pledge submitted:", {
-        ...formState,
-        monthlyAmount: getPrice(),
-        planType: getPlanName(),
+      // First, create the pledge on your backend
+      const response = await fetch('/api/pledge', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          full_name: formState.name,
+          email: formState.email,
+          seats: formState.seats,
+        }),
       })
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const result = await response.json()
 
-      // Redirect to success page
-      window.location.href = "/founder/success"
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to create pledge')
+      }
+
+      // Get the card element
+      const cardElement = elements.getElement('card')
+      if (!cardElement) {
+        throw new Error('Card element not found')
+      }
+
+      // Confirm the SetupIntent with the payment method
+      const { setupIntent, error: stripeError } = await stripe.confirmCardSetup(
+        result.client_secret,
+        {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name: formState.name,
+              email: formState.email,
+            },
+          },
+        }
+      )
+
+      console.log("Stripe response:", { setupIntent })
+      const {data : pledge_data, error : pledge_error} = await supabase.from('pledges')
+        .update({
+          stripe_setup_intent_id: setupIntent.id,
+          stripe_payment_method_id: setupIntent.payment_method,
+          payment_method_configuration_id:setupIntent.payment_method_configuration_details.id,
+          is_charged: false,
+          payment_method_types: setupIntent.payment_method_types,
+        })
+        .eq('id', result.pledge_id)
+
+        console.log("Pledge update response:", { pledge_data, pledge_error })
+      if (pledge_error) {
+        throw new Error(pledge_error.message || 'Failed to update pledge with payment method')
+      }
+       
+      if (stripeError) {
+        throw new Error(stripeError.message || 'Payment setup failed')
+      }
+
+      // Redirect to success page with pledge details
+      router.push(`/founder/success?pledge_id=${result.pledge_id}&customer_id=${result.customer_id || ''}&total_seats=${result.total_seats || 0}`)
+
     } catch (error) {
       console.error("Submission error:", error)
+      
+      // Show user-friendly error message
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred'
+      
+      // Special handling for Stripe errors
+      if (errorMessage.includes("card number")) {
+        setFormErrors(prev => ({
+          ...prev,
+          card: "Please check your card details and try again"
+        }))
+      } else {
+        alert(`Error: ${errorMessage}. Please try again or contact support if the problem persists.`)
+      }
+      
       setIsSubmitting(false)
     }
   }
@@ -201,6 +323,11 @@ export function FounderSignupForm() {
                       required
                       className="text-lg"
                     />
+                    {formErrors.name && (
+                      <p className="text-sm text-red-500 mt-1">
+                        {formErrors.name}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -213,14 +340,26 @@ export function FounderSignupForm() {
                       required
                       className="text-lg"
                     />
+                    {formErrors.email && (
+                      <p className="text-sm text-red-500 mt-1">
+                        {formErrors.email}
+                      </p>
+                    )}
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="card">Payment Method</Label>
-                    <CardElement />
-                    <p className="text-sm text-muted-foreground">
-                      Your card will be securely vaulted but not charged until we reach 400 pledges.
+                   <div className="space-y-2">
+                    <Label htmlFor="card" className="font-medium">
+                      Payment Method *
+                    </Label>
+                    <CardElementstrip onCardChange={handleCardChange} />
+                    <p className="text-sm text-muted-foreground mt-2">
+                      Your card will be securely saved but not charged until we reach 400 pledges.
                     </p>
+                    {formErrors.card && (
+                      <p className="text-sm text-red-500 mt-1">
+                        {formErrors.card}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -237,7 +376,7 @@ export function FounderSignupForm() {
                   type="submit"
                   size="lg"
                   className="w-full bg-blue-600 hover:bg-blue-800 text-lg py-6"
-                  disabled={!isFormValid() || isSubmitting}
+                  disabled={!isFormValid() || isSubmitting || !stripeReady}
                 >
                   {isSubmitting
                     ? "Processing Your Pledge..."
@@ -253,5 +392,14 @@ export function FounderSignupForm() {
         </div>
       </div>
     </div>
+  )
+}
+
+// Main component wrapped with Elements provider
+export function FounderSignupForm() {
+  return (
+    <Elements stripe={stripePromise}>
+      <FounderSignupFormInner />
+    </Elements>
   )
 }

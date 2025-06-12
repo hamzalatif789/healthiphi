@@ -1,5 +1,5 @@
-"use client"
-
+"use client";
+import React from "react"
 import { useLanguage } from "@/lib/language-context"
 import { LanguageSwitcher } from "./language-switcher"
 import Link from "next/link"
