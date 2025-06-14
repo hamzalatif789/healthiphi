@@ -38,32 +38,28 @@ export function FounderPassSection() {
     return "Community"
   }
 
-  const getPerks = () => {
-    const perks = [t("founder.perk1")]
-
-    if (seats >= 5) perks.push(t("founder.perk2"))
-    if (seats >= 10) perks.push(t("founder.perk3"))
-    if (seats >= 15) perks.push(t("founder.perk4"))
-
-    return perks
-  }
-
   return (
-    <section className="w-full py-12 md:py-24 bg-blue-50">
+    <section className="w-full py-12 md:py-24 bg-cream-100">
       <div className="container px-4 md:px-6 mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-4">{t("founder.title")}</h2>
-        <p className="text-center text-lg mb-12 max-w-3xl mx-auto">{t("founder.subtitle")}</p>
+        {/* Section header */}
+        <div className="text-center mb-12">
+          <div className="bg-cream-50 px-6 py-3 rounded-xl inline-block mb-4 border border-cream-200">
+            <h2 className="text-3xl font-bold text-forest-800">{t("founder.title")}</h2>
+          </div>
+          <p className="text-lg text-forest-700 max-w-3xl mx-auto">{t("founder.subtitle")}</p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <Card>
+          {/* Left Card - Soft White background */}
+          <Card className="bg-cream-50 border-cream-200 shadow-lg">
             <CardHeader>
-              <CardTitle>{t("founder.pickSeats")}</CardTitle>
+              <CardTitle className="text-forest-800">{t("founder.pickSeats")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
                 <div>
                   <div className="flex justify-between mb-2">
-                    <span>{t("founder.seats")}</span>
+                    <span className="text-forest-700">{t("founder.seats")}</span>
                     <div className="flex items-center">
                       <Input
                         type="number"
@@ -71,13 +67,23 @@ export function FounderPassSection() {
                         max={20}
                         value={seats}
                         onChange={handleInputChange}
-                        className="w-16 mr-2"
+                        className="w-16 mr-2 border-cream-300 bg-white"
                       />
-                      <Badge variant="outline">{getPlanName()}</Badge>
+                      {/* Golden badge */}
+                      <Badge className="bg-golden-500 text-forest-800 border-golden-600 font-medium">
+                        {getPlanName()}
+                      </Badge>
                     </div>
                   </div>
-                  <Slider value={[seats]} min={1} max={20} step={1} onValueChange={handleSliderChange} />
-                  <div className="flex justify-between text-sm text-muted-foreground mt-1">
+                  <Slider
+                    value={[seats]}
+                    min={1}
+                    max={20}
+                    step={1}
+                    onValueChange={handleSliderChange}
+                    className="[&_[role=slider]]:bg-golden-500 [&_[role=slider]]:border-golden-600"
+                  />
+                  <div className="flex justify-between text-sm text-forest-600 mt-1">
                     <span>1</span>
                     <span>5</span>
                     <span>10</span>
@@ -86,17 +92,18 @@ export function FounderPassSection() {
                   </div>
                 </div>
 
-                <div className="p-4 bg-blue-100 rounded-lg">
+                {/* Price highlight box */}
+                <div className="bg-golden-500 p-4 rounded-lg shadow-sm">
                   <div className="flex justify-between mb-2">
-                    <span className="font-medium">{t("founder.totalMonthly")}</span>
-                    <span className="font-bold text-xl">€{getPrice()}</span>
+                    <span className="font-medium text-forest-800">{t("founder.totalMonthly")}</span>
+                    <span className="font-bold text-2xl text-forest-800">€{getPrice()}</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">{t("founder.vatIncluded")}</p>
+                  <p className="text-sm text-forest-700">{t("founder.vatIncluded")}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-medium mb-2">{t("founder.whoFits")}</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="font-medium mb-2 text-forest-800">{t("founder.whoFits")}</h4>
+                  <p className="text-forest-600">
                     {seats === 1 && t("founder.solo")}
                     {seats > 1 && seats <= 4 && t("founder.family")}
                     {seats > 4 && seats <= 10 && t("founder.team")}
@@ -107,70 +114,77 @@ export function FounderPassSection() {
             </CardContent>
           </Card>
 
-          <Card>
+          {/* Right Card - Soft White background */}
+          <Card className="bg-cream-50 border-cream-200 shadow-lg">
             <CardHeader>
-              <CardTitle>{t("founder.rewards")}</CardTitle>
+              <CardTitle className="text-forest-800">{t("founder.rewards")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   <li className="flex items-start">
-                    <div className="mr-2 mt-1 h-5 w-5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                    {/* Forest green check circle */}
+                    <div className="mr-3 mt-1 h-6 w-6 flex items-center justify-center rounded-full bg-forest-500 text-white text-sm font-bold shadow-sm">
                       ✓
                     </div>
-                    <span>{t("founder.badge")}</span>
+                    <span className="text-forest-700">{t("founder.badge")}</span>
                   </li>
                   {seats >= 5 && (
                     <li className="flex items-start">
-                      <div className="mr-2 mt-1 h-5 w-5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                      <div className="mr-3 mt-1 h-6 w-6 flex items-center justify-center rounded-full bg-forest-500 text-white text-sm font-bold shadow-sm">
                         ✓
                       </div>
-                      <span>{t("founder.webinar")}</span>
+                      <span className="text-forest-700">{t("founder.webinar")}</span>
                     </li>
                   )}
                   {seats >= 10 && (
                     <li className="flex items-start">
-                      <div className="mr-2 mt-1 h-5 w-5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                      <div className="mr-3 mt-1 h-6 w-6 flex items-center justify-center rounded-full bg-forest-500 text-white text-sm font-bold shadow-sm">
                         ✓
                       </div>
-                      <span>{t("founder.blueLagoon")}</span>
+                      <span className="text-forest-700">{t("founder.blueLagoon")}</span>
                     </li>
                   )}
                   {seats >= 15 && (
                     <li className="flex items-start">
-                      <div className="mr-2 mt-1 h-5 w-5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                      <div className="mr-3 mt-1 h-6 w-6 flex items-center justify-center rounded-full bg-forest-500 text-white text-sm font-bold shadow-sm">
                         ✓
                       </div>
-                      <span>{t("founder.engraved")}</span>
+                      <span className="text-forest-700">{t("founder.engraved")}</span>
                     </li>
                   )}
                 </ul>
 
-                <div className="p-4 bg-blue-100 rounded-lg mt-6">
-                  <h4 className="font-medium mb-2">{t("founder.zeroRisk")}</h4>
+                {/* Guarantee box with cream background */}
+                <div className="bg-cream-100 p-4 rounded-lg border border-cream-200">
+                  <h4 className="font-medium mb-3 text-forest-800">{t("founder.zeroRisk")}</h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start">
-                      <div className="mr-2 mt-0.5 h-4 w-4 flex items-center justify-center rounded-full bg-blue-200 text-blue-600 text-xs">
+                      <div className="mr-2 mt-0.5 h-5 w-5 flex items-center justify-center rounded-full bg-golden-500 text-forest-800 text-xs font-bold">
                         ✓
                       </div>
-                      <span>{t("founder.cardVaulted")}</span>
+                      <span className="text-forest-700">{t("founder.cardVaulted")}</span>
                     </li>
                     <li className="flex items-start">
-                      <div className="mr-2 mt-0.5 h-4 w-4 flex items-center justify-center rounded-full bg-blue-200 text-blue-600 text-xs">
+                      <div className="mr-2 mt-0.5 h-5 w-5 flex items-center justify-center rounded-full bg-golden-500 text-forest-800 text-xs font-bold">
                         ✓
                       </div>
-                      <span>{t("founder.sevenDay")}</span>
+                      <span className="text-forest-700">{t("founder.sevenDay")}</span>
                     </li>
                     <li className="flex items-start">
-                      <div className="mr-2 mt-0.5 h-4 w-4 flex items-center justify-center rounded-full bg-blue-200 text-blue-600 text-xs">
+                      <div className="mr-2 mt-0.5 h-5 w-5 flex items-center justify-center rounded-full bg-golden-500 text-forest-800 text-xs font-bold">
                         ✓
                       </div>
-                      <span>{t("founder.failSafe")}</span>
+                      <span className="text-forest-700">{t("founder.failSafe")}</span>
                     </li>
                   </ul>
                 </div>
 
-                <Button className="w-full bg-blue-600 hover:bg-blue-800" asChild>
+                {/* Primary Golden CTA */}
+                <Button
+                  className="w-full bg-golden-500 hover:bg-golden-600 text-forest-800 font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                  asChild
+                >
                   <Link href="/founder">{t("founder.reserveSeats")}</Link>
                 </Button>
               </div>

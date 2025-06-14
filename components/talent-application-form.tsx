@@ -207,7 +207,7 @@ export function TalentApplicationForm() {
     }
   }
   return (
-    <Card className="w-full">
+    <Card className="w-full bg-cream-50">
       <CardHeader>
         <CardTitle className="text-2xl">Application Form</CardTitle>
         {formStarted && <p className="text-sm text-muted-foreground">{formatTimeLeft(timeLeft)}</p>}
@@ -328,7 +328,7 @@ export function TalentApplicationForm() {
             )}
             <div className="flex justify-between text-sm text-muted-foreground">
               <span>Minimum 20 characters</span>
-              <span className={formState.motivation.length >= 20 ? "text-green-600" : ""}>
+              <span className={formState.motivation.length >= 20 ? "text-emerald-600" : ""}>
                 {formState.motivation.length}/500
               </span>
             </div>
@@ -338,7 +338,7 @@ export function TalentApplicationForm() {
           <Button
             type="submit"
             size="lg"
-            className="w-full bg-blue-600 hover:bg-blue-800 text-lg py-6"
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-lg py-6"
             disabled={!isFormValid() || isSubmitting}
           >
             {isSubmitting ? "Submitting Application..." : "Submit Application"}

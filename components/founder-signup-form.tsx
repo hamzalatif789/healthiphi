@@ -206,12 +206,12 @@ function FounderSignupFormInner() {
   }
 
   return (
-    <div className="flex-1 bg-gradient-to-b from-blue-50 to-white">
+    <div className="flex-1 bg-gradient-to-b from-cream-50 to-white">
       {/* Header */}
       <div className="container mx-auto px-4 py-8">
         <Link
           href="/"
-          className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors mb-8"
+          className="inline-flex items-center space-x-2 text-emerald-600 hover:text-emerald-800 transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           <span className="font-medium">Back to Healthiphi</span>
@@ -266,7 +266,7 @@ function FounderSignupFormInner() {
                 </div>
               </div>
 
-              <div className="p-4 bg-blue-100 rounded-lg">
+              <div className="p-4 bg-papaya-100 rounded-lg">
                 <div className="flex justify-between mb-2">
                   <span className="font-medium">Monthly Total</span>
                   <span className="font-bold text-2xl">€{getPrice()}</span>
@@ -280,24 +280,24 @@ function FounderSignupFormInner() {
                 <h4 className="font-medium">Founder Benefits Include:</h4>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">✓</span>
+                    <span className="text-emerald-600 mr-2">✓</span>
                     <span>Founder badge & 15% lifetime discount</span>
                   </li>
                   {formState.seats >= 5 && (
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
+                      <span className="text-emerald-600 mr-2">✓</span>
                       <span>Private onboarding webinar for your group</span>
                     </li>
                   )}
                   {formState.seats >= 10 && (
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
+                      <span className="text-emerald-600 mr-2">✓</span>
                       <span>Invite to our Blue Lagoon Longevity Day</span>
                     </li>
                   )}
                   {formState.seats >= 15 && (
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
+                      <span className="text-emerald-600 mr-2">✓</span>
                       <span>Name engraved on our launch wall & future clinic app</span>
                     </li>
                   )}
@@ -363,7 +363,7 @@ function FounderSignupFormInner() {
                   </div>
                 </div>
 
-                <div className="p-4 bg-blue-50 rounded-lg">
+                <div className="p-4 bg-cream-100 rounded-lg">
                   <h4 className="font-medium mb-2">Zero-Risk Guarantee</h4>
                   <ul className="space-y-1 text-sm text-muted-foreground">
                     <li>• Card vaulted now, never charged until 400 pledges reached</li>
@@ -375,7 +375,7 @@ function FounderSignupFormInner() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-blue-600 hover:bg-blue-800 text-lg py-6"
+                  className="w-full bg-emerald-600 hover:bg-emerald-800 text-lg py-6"
                   disabled={!isFormValid() || isSubmitting || !stripeReady}
                 >
                   {isSubmitting

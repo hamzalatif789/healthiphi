@@ -4,48 +4,66 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    /* Light Yellow background (#fefbea) */
+    --background: 50 100% 96%;
+    --foreground: 120 30% 15%; /* Dark text for contrast */
+
+    /* Soft White card backgrounds (#fff1d4) */
+    --card: 50 100% 91%;
+    --card-foreground: 120 30% 15%;
+
+    /* Soft White popovers */
+    --popover: 50 100% 91%;
+    --popover-foreground: 120 30% 15%;
+
+    /* Primary Accent Yellow (#f1be49) - CTA buttons */
+    --primary: 45 85% 62%;
+    --primary-foreground: 120 30% 15%;
+
+    /* Secondary Green (#317039) - navigation, success */
+    --secondary: 125 39% 32%;
+    --secondary-foreground: 50 100% 96%;
+
+    /* Cream backgrounds (#f8edd9) */
+    --muted: 40 60% 90%;
+    --muted-foreground: 120 20% 40%;
+
+    /* Cream accents */
+    --accent: 40 60% 90%;
+    --accent-foreground: 120 30% 15%;
+
+    /* Alert Red (#cc4a25) */
+    --destructive: 12 67% 47%;
+    --destructive-foreground: 50 100% 96%;
+
+    /* Borders - subtle cream */
+    --border: 40 40% 85%;
+    --input: 40 40% 85%;
+    --ring: 45 85% 62%; /* Golden focus ring */
+
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --background: 120 30% 8%;
+    --foreground: 50 100% 96%;
+    --card: 120 20% 12%;
+    --card-foreground: 50 100% 96%;
+    --popover: 120 20% 12%;
+    --popover-foreground: 50 100% 96%;
+    --primary: 45 85% 62%;
+    --primary-foreground: 120 30% 8%;
+    --secondary: 125 39% 32%;
+    --secondary-foreground: 50 100% 96%;
+    --muted: 120 20% 20%;
+    --muted-foreground: 50 60% 70%;
+    --accent: 120 20% 20%;
+    --accent-foreground: 50 100% 96%;
+    --destructive: 12 67% 47%;
+    --destructive-foreground: 50 100% 96%;
+    --border: 120 20% 20%;
+    --input: 120 20% 20%;
+    --ring: 45 85% 62%;
   }
 }
 
@@ -54,7 +72,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-golden-50 text-foreground; /* Light Yellow main background */
   }
 }
 

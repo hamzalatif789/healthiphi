@@ -24,18 +24,20 @@ function FlipCard({ title, description, stats }: FlipCardProps) {
         className="w-full h-full relative preserve-3d transition-all duration-500"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
       >
-        {/* Front */}
-        <Card className="absolute w-full h-full backface-hidden">
+        {/* Front - Soft White card background */}
+        <Card className="absolute w-full h-full backface-hidden bg-cream-50 border-cream-200 shadow-md hover:shadow-lg transition-shadow">
           <CardContent className="flex flex-col items-center justify-center h-full p-6 text-center">
-            <h3 className="text-xl font-bold mb-2">{title}</h3>
-            <p className="text-muted-foreground">{description}</p>
+            <h3 className="text-xl font-bold mb-2 text-forest-800">{title}</h3>
+            <p className="text-forest-600">{description}</p>
           </CardContent>
         </Card>
 
-        {/* Back */}
-        <Card className="absolute w-full h-full backface-hidden rotate-y-180 bg-blue-50">
+        {/* Back - Cream background with golden highlight */}
+        <Card className="absolute w-full h-full backface-hidden rotate-y-180 bg-cream-100 border-cream-200 shadow-md">
           <CardContent className="flex flex-col items-center justify-center h-full p-6 text-center">
-            <p className="text-2xl font-bold">{stats}</p>
+            <div className="bg-golden-500 text-forest-800 px-6 py-3 rounded-full shadow-sm">
+              <p className="text-2xl font-bold">{stats}</p>
+            </div>
           </CardContent>
         </Card>
       </motion.div>
@@ -47,13 +49,21 @@ export function ProblemSection() {
   const { t } = useLanguage()
 
   return (
-    <section className="w-full py-12 md:py-24 bg-white">
+    <section className="w-full py-12 md:py-24 bg-cream-100">
       <div className="container px-4 md:px-6 mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">{t("problem.title")}</h2>
+        {/* Section header with cream highlight */}
+        <div className="text-center mb-12">
+          <div className="bg-cream-50 px-6 py-3 rounded-xl inline-block mb-4 border border-cream-200">
+            <h2 className="text-3xl font-bold text-forest-800">{t("problem.title")}</h2>
+          </div>
+        </div>
 
         <div className="text-center mb-8">
-          <p className="text-xl">{t("problem.subtitle")}</p>
-          <p className="text-2xl font-bold mt-4">{t("problem.solution")}</p>
+          <p className="text-xl text-forest-700 mb-4">{t("problem.subtitle")}</p>
+          {/* Golden highlight for solution */}
+          <div className="bg-golden-500 text-forest-800 px-6 py-3 rounded-full inline-block font-semibold shadow-sm">
+            <p className="text-2xl font-bold">{t("problem.solution")}</p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">

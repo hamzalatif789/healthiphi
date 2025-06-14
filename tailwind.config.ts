@@ -53,17 +53,62 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        blue: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e40af",
-          900: "#1e3a8a",
+
+        // HEALTHIPHI REFINED PALETTE - Role-based colors
+        // Primary Accent - Yellow (#f1be49)
+        golden: {
+          50: "#fefbea", // Light Yellow background
+          100: "#fef7d3",
+          200: "#fdeea7",
+          300: "#fce47b",
+          400: "#fbd94f",
+          500: "#f1be49", // Primary Accent Yellow - CTA buttons, links, highlights
+          600: "#d9a441",
+          700: "#c18a39",
+          800: "#a97031",
+          900: "#915629",
+        },
+
+        // Secondary - Green (#317039)
+        forest: {
+          50: "#f0f9f1",
+          100: "#dcf2de",
+          200: "#bae5bd",
+          300: "#98d89c",
+          400: "#76cb7b",
+          500: "#317039", // Secondary Green - success, navigation, positive actions
+          600: "#2c5f32",
+          700: "#274e2b",
+          800: "#223d24",
+          900: "#1d2c1d",
+        },
+
+        // Background and Light Accents - Cream (#f8edd9)
+        cream: {
+          50: "#fff1d4", // Soft White - card backgrounds, content areas
+          100: "#f8edd9", // Cream - section backgrounds, card backgrounds
+          200: "#f1e1c4",
+          300: "#ead5af",
+          400: "#e3c99a",
+          500: "#dcbd85",
+          600: "#c5a677",
+          700: "#ae8f69",
+          800: "#97785b",
+          900: "#80614d",
+        },
+
+        // Alert/Error - Red (#cc4a25)
+        alert: {
+          50: "#fef2f2",
+          100: "#fee2e2",
+          200: "#fecaca",
+          300: "#fca5a5",
+          400: "#f87171",
+          500: "#cc4a25", // Red - error states, alerts, warnings
+          600: "#b91c1c",
+          700: "#991b1b",
+          800: "#7f1d1d",
+          900: "#701a1a",
         },
       },
       borderRadius: {

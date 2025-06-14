@@ -21,23 +21,26 @@ export function ProgressBand() {
   }, [progress, t])
 
   return (
-    <section className="w-full py-8 bg-white">
+    <section className="w-full py-8 bg-golden-50">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center">
-          <h3 className="text-xl font-bold mb-4">
-            Progress Dial:{" "}
-            <span className="text-blue-600">
-              {label} — {progress}%
-            </span>
-          </h3>
+          {/* Title with cream highlight */}
+          <div className="bg-cream-100 px-6 py-2 rounded-xl mb-6 border border-cream-200">
+            <h3 className="text-xl font-bold text-forest-800">
+              Progress Dial:{" "}
+              <span className="text-golden-600">
+                {label} — {progress}%
+              </span>
+            </h3>
+          </div>
 
           <div className="relative w-64 h-64">
-            {/* Background circle */}
-            <div className="absolute inset-0 rounded-full border-8 border-gray-100"></div>
+            {/* Background circle - Cream */}
+            <div className="absolute inset-0 rounded-full border-8 border-cream-200"></div>
 
             {/* Progress circle */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="46" fill="none" stroke="#e6e6e6" strokeWidth="8" />
+              <circle cx="50" cy="50" r="46" fill="none" stroke="#f8edd9" strokeWidth="8" />
               <circle
                 cx="50"
                 cy="50"
@@ -52,24 +55,28 @@ export function ProgressBand() {
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3b82f6" />
-                  <stop offset="100%" stopColor="#10b981" />
+                  <stop offset="0%" stopColor="#317039" />
+                  <stop offset="50%" stopColor="#f1be49" />
+                  <stop offset="100%" stopColor="#cc4a25" />
                 </linearGradient>
               </defs>
             </svg>
 
-            {/* Center text */}
+            {/* Center text with golden highlight */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-3xl font-bold">{progress}%</span>
+              <div className="bg-golden-500 px-4 py-2 rounded-full shadow-sm">
+                <span className="text-3xl font-bold text-forest-800">{progress}%</span>
+              </div>
             </div>
           </div>
 
-          <p className="text-center mt-6 max-w-md text-muted-foreground">
-            Share your unique link after checkout—every successful referral credits <strong>one free month</strong> to
+          <p className="text-center mt-6 max-w-md text-forest-700">
+            Share your unique link after checkout—every successful referral credits{" "}
+            <span className="bg-golden-500 px-2 py-1 rounded text-forest-800 font-semibold">one free month</span> to
             both you <em>and</em> your friend.
           </p>
 
-          <p className="text-center mt-2 font-medium">
+          <p className="text-center mt-2 font-medium text-forest-800">
             More seats, more momentum, more healthy years for Iceland. How many will you spark?
           </p>
         </div>
