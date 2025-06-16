@@ -36,7 +36,7 @@ export function Header() {
   const { t } = useLanguage()
 
   return (
-    <header className="w-full border-b bg-forest-500 backdrop-blur-sm sticky top-0 z-50 border-forest-600 shadow-sm">
+    <header className="w-full border-b bg-[#006a5c] backdrop-blur-sm sticky top-0 z-50 border-forest-600 shadow-sm">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo with golden circle */}
         <Link href="/" className="flex items-center space-x-3 hover:opacity-90 transition-opacity">

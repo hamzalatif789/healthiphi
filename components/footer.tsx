@@ -12,7 +12,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="w-full py-6 bg-forest-500 text-white">
+    <footer className="w-full py-6 bg-[#006a5c] text-white">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">

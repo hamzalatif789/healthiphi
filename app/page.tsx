@@ -1,4 +1,4 @@
-import { Hero } from "@/components/hero"
+import {Hero}  from "@/components/hero"
 import { ProblemSection } from "@/components/problem-section"
 import { FounderPassSection } from "@/components/founder-pass-section"
 import { TalentSection } from "@/components/talent-section"
@@ -12,7 +12,7 @@ import { Header } from "@/components/header"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center">
+    <main className="flex min-h-screen flex-col items-center bg-[#f9f9f9]">
       <Header />
       <Hero />
       <ProblemSection />

@@ -88,7 +88,7 @@ export function PodcastPlayer() {
   }, [duration])
 
   return (
-    <Card className="w-full max-w-xl mx-auto mt-8">
+    <Card className="w-full max-w-xl mx-auto mt-8 ">
       <CardHeader className="pb-2">
         <CardTitle className="text-lg flex items-center">
           <span className="mr-2">🎙️</span> {t("hero.podcastTitle")}

@@ -206,145 +206,197 @@ export function TalentApplicationForm() {
       setIsSubmitting(false)
     }
   }
+
   return (
-    <Card className="w-full bg-cream-50">
-      <CardHeader>
-        <CardTitle className="text-2xl">Application Form</CardTitle>
-        {formStarted && <p className="text-sm text-muted-foreground">{formatTimeLeft(timeLeft)}</p>}
-      </CardHeader>
-      <CardContent>
-        {/* Status Messages */}
-        {submitError && (
-          <Alert className="mb-6 border-red-200 bg-red-50">
-            <AlertTriangle className="h-4 w-4 text-red-600" />
-            <AlertDescription className="text-red-700">
-              {submitError}
-            </AlertDescription>
-          </Alert>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Full Name */}
-          <div className="space-y-2">
-            <Label htmlFor="name">Full Name *</Label>
-            <Input
-              id="name"
-              value={formState.name}
-              onChange={(e) => handleInputChange("name", e.target.value)}
-              onFocus={handleFirstInteraction}
-              required
-              className={`text-lg ${fieldErrors.name ? 'border-red-300 bg-red-50' : ''}`}
-              disabled={isSubmitting}
-            />
-            {fieldErrors.name && (
-              <p className="text-red-600 text-sm">{fieldErrors.name}</p>
-            )}
-          </div>
-
-          {/* Email */}
-          <div className="space-y-2">
-            <Label htmlFor="email">Email *</Label>
-            <Input
-              id="email"
-              type="email"
-              value={formState.email}
-              onChange={(e) => handleInputChange("email", e.target.value)}
-              onFocus={handleFirstInteraction}
-              required
-              className={`text-lg ${fieldErrors.email ? 'border-red-300 bg-red-50' : ''}`}
-              disabled={isSubmitting}
-            />
-            {fieldErrors.email && (
-              <p className="text-red-600 text-sm">{fieldErrors.email}</p>
-            )}
-          </div>
-
-          {/* Profession */}
-          <div className="space-y-2">
-            <Label htmlFor="profession">Profession *</Label>
-            <Select
-              value={formState.profession}
-              onValueChange={(value) => handleInputChange("profession", value)}
-              onOpenChange={handleFirstInteraction}
-              disabled={isSubmitting}
-            >
-              <SelectTrigger className={`text-lg ${fieldErrors.profession ? 'border-red-300 bg-red-50' : ''}`}>
-                <SelectValue placeholder="Select your profession" />
-              </SelectTrigger>
-              <SelectContent>
-                {professions.map((profession) => (
-                  <SelectItem key={profession} value={profession}>
-                    {profession}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {fieldErrors.profession && (
-              <p className="text-red-600 text-sm">{fieldErrors.profession}</p>
-            )}
-            <p className="text-sm text-muted-foreground">e.g., Physician, Nurse, Health Coach</p>
-          </div>
-
-          {/* Years of Experience */}
-          <div className="space-y-4">
-            <Label htmlFor="experience">Years of Experience *</Label>
-            <div className="px-2">
-              <Slider
-                id="experience"
-                min={0}
-                max={30}
-                step={1}
-                value={[formState.experience]}
-                onValueChange={(value) => handleInputChange("experience", value[0])}
-                onPointerDown={handleFirstInteraction}
-                className="w-full"
-                disabled={isSubmitting}
-              />
-              <div className="flex justify-between text-sm text-muted-foreground mt-1">
-                <span>0</span>
-                <span className="font-medium text-lg text-foreground">{formState.experience} years</span>
-                <span>30+</span>
+    <div className="w-full py-16 md:py-24 bg-white relative">
+      <div className="container px-4 md:px-6 mx-auto max-w-2xl">
+        <Card className="bg-white border-[#f6ecdc] shadow-lg">
+          <CardHeader className="pb-6">
+            <div className="bg-[#fefbea] px-8 py-4 rounded-2xl border border-[#f6ecdc] shadow-sm mb-4">
+              <CardTitle className="text-2xl md:text-3xl font-light text-black tracking-tight">
+                Application Form
+              </CardTitle>
+            </div>
+            {formStarted && (
+              <div className="bg-[#fff1d4] px-4 py-2 rounded-lg border border-[#f6ecdc]">
+                <p className="text-sm text-black opacity-75 font-light">
+                  {formatTimeLeft(timeLeft)}
+                </p>
               </div>
-            </div>
-          </div>
-
-          {/* Motivation */}
-          <div className="space-y-2">
-            <Label htmlFor="motivation">Why do you want to join Healthiphi? *</Label>
-            <Textarea
-              id="motivation"
-              value={formState.motivation}
-              onChange={(e) => handleInputChange("motivation", e.target.value)}
-              onFocus={handleFirstInteraction}
-              required
-              rows={4}
-              className={`text-lg resize-none ${fieldErrors.motivation ? 'border-red-300 bg-red-50' : ''}`}
-              placeholder="Tell us what motivates you to be part of Iceland's health revolution..."
-              disabled={isSubmitting}
-              maxLength={500}
-            />
-            {fieldErrors.motivation && (
-              <p className="text-red-600 text-sm">{fieldErrors.motivation}</p>
             )}
-            <div className="flex justify-between text-sm text-muted-foreground">
-              <span>Minimum 20 characters</span>
-              <span className={formState.motivation.length >= 20 ? "text-emerald-600" : ""}>
-                {formState.motivation.length}/500
-              </span>
-            </div>
-          </div>
+          </CardHeader>
+          <CardContent>
+            {/* Status Messages */}
+            {submitError && (
+              <Alert className="mb-6 bg-[#fff1d4] border-[#cc4b24] border-2">
+                <AlertTriangle className="h-4 w-4 text-[#cc4b24]" />
+                <AlertDescription className="text-black font-light">
+                  {submitError}
+                </AlertDescription>
+              </Alert>
+            )}
 
-          {/* Submit Button */}
-          <Button
-            type="submit"
-            size="lg"
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-lg py-6"
-            disabled={!isFormValid() || isSubmitting}
-          >
-            {isSubmitting ? "Submitting Application..." : "Submit Application"}
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+            {submitSuccess && (
+              <Alert className="mb-6 bg-[#fefbea] border-[#317039] border-2">
+                <CheckCircle2 className="h-4 w-4 text-[#317039]" />
+                <AlertDescription className="text-black font-light">
+                  Application submitted successfully! Redirecting...
+                </AlertDescription>
+              </Alert>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Full Name */}
+              <div className="space-y-3">
+                <Label htmlFor="name" className="text-black font-medium">
+                  Full Name *
+                </Label>
+                <Input
+                  id="name"
+                  value={formState.name}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  onFocus={handleFirstInteraction}
+                  required
+                  className={`text-lg bg-[#fefbea] border-[#f6ecdc] focus:border-[#317039] focus:ring-[#317039] text-black font-light ${
+                    fieldErrors.name ? 'border-[#cc4b24] bg-[#fff1d4]' : ''
+                  }`}
+                  disabled={isSubmitting}
+                />
+                {fieldErrors.name && (
+                  <p className="text-[#cc4b24] text-sm font-light">{fieldErrors.name}</p>
+                )}
+              </div>
+
+              {/* Email */}
+              <div className="space-y-3">
+                <Label htmlFor="email" className="text-black font-medium">
+                  Email *
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  onFocus={handleFirstInteraction}
+                  required
+                  className={`text-lg bg-[#fefbea] border-[#f6ecdc] focus:border-[#317039] focus:ring-[#317039] text-black font-light ${
+                    fieldErrors.email ? 'border-[#cc4b24] bg-[#fff1d4]' : ''
+                  }`}
+                  disabled={isSubmitting}
+                />
+                {fieldErrors.email && (
+                  <p className="text-[#cc4b24] text-sm font-light">{fieldErrors.email}</p>
+                )}
+              </div>
+
+              {/* Profession */}
+              <div className="space-y-3">
+                <Label htmlFor="profession" className="text-black font-medium">
+                  Profession *
+                </Label>
+                <Select
+                  value={formState.profession}
+                  onValueChange={(value) => handleInputChange("profession", value)}
+                  onOpenChange={handleFirstInteraction}
+                  disabled={isSubmitting}
+                >
+                  <SelectTrigger className={`text-lg bg-[#fefbea] border-[#f6ecdc] focus:border-[#317039] focus:ring-[#317039] text-black font-light ${
+                    fieldErrors.profession ? 'border-[#cc4b24] bg-[#fff1d4]' : ''
+                  }`}>
+                    <SelectValue placeholder="Select your profession" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border-[#f6ecdc]">
+                    {professions.map((profession) => (
+                      <SelectItem key={profession} value={profession} className="text-black font-light">
+                        {profession}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {fieldErrors.profession && (
+                  <p className="text-[#cc4b24] text-sm font-light">{fieldErrors.profession}</p>
+                )}
+                <p className="text-sm text-black opacity-60 font-light">
+                  e.g., Physician, Nurse, Health Coach
+                </p>
+              </div>
+
+              {/* Years of Experience */}
+              <div className="space-y-4">
+                <Label htmlFor="experience" className="text-black font-medium">
+                  Years of Experience *
+                </Label>
+                <div className="bg-[#fefbea] p-6 rounded-2xl border border-[#f6ecdc]">
+                  <Slider
+                    id="experience"
+                    min={0}
+                    max={30}
+                    step={1}
+                    value={[formState.experience]}
+                    onValueChange={(value) => handleInputChange("experience", value[0])}
+                    onPointerDown={handleFirstInteraction}
+                    className="w-full [&_[role=slider]]:bg-[#317039] [&_[role=slider]]:border-[#317039] [&_.slider-track]:bg-[#f6ecdc] [&_.slider-range]:bg-[#317039]"
+                    disabled={isSubmitting}
+                  />
+                  <div className="flex justify-between text-sm text-black opacity-60 mt-3">
+                    <span>0</span>
+                    <span className="font-medium text-lg text-black opacity-100">
+                      {formState.experience} years
+                    </span>
+                    <span>30+</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Motivation */}
+              <div className="space-y-3">
+                <Label htmlFor="motivation" className="text-black font-medium">
+                  Why do you want to join Healthiphi? *
+                </Label>
+                <Textarea
+                  id="motivation"
+                  value={formState.motivation}
+                  onChange={(e) => handleInputChange("motivation", e.target.value)}
+                  onFocus={handleFirstInteraction}
+                  required
+                  rows={4}
+                  className={`text-lg resize-none bg-[#fefbea] border-[#f6ecdc] focus:border-[#317039] focus:ring-[#317039] text-black font-light ${
+                    fieldErrors.motivation ? 'border-[#cc4b24] bg-[#fff1d4]' : ''
+                  }`}
+                  placeholder="Tell us what motivates you to be part of Iceland's health revolution..."
+                  disabled={isSubmitting}
+                  maxLength={500}
+                />
+                {fieldErrors.motivation && (
+                  <p className="text-[#cc4b24] text-sm font-light">{fieldErrors.motivation}</p>
+                )}
+                <div className="flex justify-between text-sm text-black opacity-60 font-light">
+                  <span>Minimum 20 characters</span>
+                  <span className={formState.motivation.length >= 20 ? "text-[#317039] opacity-100" : ""}>
+                    {formState.motivation.length}/500
+                  </span>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full bg-[#317039] text-white font-medium text-lg py-6 rounded-2xl shadow-lg border-2 border-transparent disabled:bg-[#f6ecdc] disabled:text-black disabled:opacity-60"
+                disabled={!isFormValid() || isSubmitting}
+              >
+                {isSubmitting ? "Submitting Application..." : "Submit Application"}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Subtle decorative elements matching the first component */}
+      <div className="absolute top-24 left-8 w-px h-16 bg-gradient-to-b from-[#317039] to-transparent opacity-20"></div>
+      <div className="absolute bottom-24 right-8 w-px h-20 bg-gradient-to-t from-[#cc4b24] to-transparent opacity-15"></div>
+      <div className="absolute top-1/3 right-12 w-2 h-8 bg-[#317039] rounded-full opacity-10"></div>
+      <div className="absolute bottom-1/3 left-12 w-1 h-6 bg-[#cc4b24] rounded-full opacity-15"></div>
+    </div>
   )
 }
