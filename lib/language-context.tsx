@@ -38,7 +38,6 @@ const translations = {
     "problem.safeguards.title": "EU-AI-Act safeguards",
     "problem.safeguards.description": "Every action is wrapped in GDPR protection—so trust travels as fast as tech",
     "problem.safeguards.stats": "100% compliance with the strictest privacy regulations in the world",
-
     // Founder Pass Section
     "founder.title": "Become a Healthiphi Founder",
     "founder.subtitle":
