@@ -206,7 +206,7 @@ function FounderSignupFormInner() {
   }
 
   return (
-    <div className="flex-1 bg-gradient-to-b from-cream-50 to-white">
+    <div className="flex-1 bg-[#ffffff]">
       {/* Header */}
       <div className="container mx-auto px-4 py-8">
         <Link
