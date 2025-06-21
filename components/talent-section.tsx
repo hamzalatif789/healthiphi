@@ -16,7 +16,7 @@ function TalentTile({ icon, title, description }: TalentTileProps) {
     <Card className="bg-white border-[#f6ecdc] hover:bg-[#fefbea] hover:border-[#f1be49] transition-all duration-300 shadow-lg hover:shadow-xl group">
       <CardContent className="p-6 relative">
         {/* Subtle decorative accent */}
-        <div className="absolute top-4 right-4 w-1 h-6 bg-[#f1be49] rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+        {/* <div className="absolute top-4 right-4 w-1 h-6 bg-[#f1be49] rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div> */}
         
         {/* Golden circle for icon */}
         <div className="w-12 h-12 bg-[#f1be49] rounded-full flex items-center justify-center text-2xl mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-300">
@@ -26,7 +26,7 @@ function TalentTile({ icon, title, description }: TalentTileProps) {
         <p className="text-black opacity-75 font-light leading-relaxed">{description}</p>
         
         {/* Bottom accent */}
-        <div className="absolute bottom-4 left-4 w-2 h-2 bg-[#cc4b24] rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+        {/* <div className="absolute bottom-4 left-4 w-2 h-2 bg-[#cc4b24] rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div> */}
       </CardContent>
     </Card>
   )

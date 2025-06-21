@@ -21,8 +21,8 @@ export function MiniManifesto() {
           {/* Elegant content card */}
           <div className="bg-white border-2 border-[#f6ecdc] rounded-3xl p-12 mb-12 shadow-lg hover:shadow-xl transition-all duration-300 relative group">
             {/* Subtle decorative accents */}
-            <div className="absolute top-6 left-6 w-2 h-8 bg-[#f1be49] rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-            <div className="absolute bottom-6 right-6 w-1 h-6 bg-[#cc4b24] rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+            {/* <div className="absolute top-6 left-6 w-2 h-8 bg-[#f1be49] rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div> */}
+            {/* <div className="absolute bottom-6 right-6 w-1 h-6 bg-[#cc4b24] rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div> */}
             
             <div className="space-y-6 mb-10">
               <p className="text-lg text-black opacity-80 font-light leading-relaxed">{t("manifesto.health")}</p>

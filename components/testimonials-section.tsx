@@ -67,8 +67,8 @@ export function TestimonialsSection() {
           <Card className="bg-white border-[#f6ecdc] shadow-lg hover:shadow-xl transition-all duration-300 relative">
             <CardContent className="p-12 relative">
               {/* Subtle decorative accents */}
-              <div className="absolute top-6 left-6 w-2 h-8 bg-[#f1be49] rounded-full opacity-30"></div>
-              <div className="absolute bottom-6 right-6 w-1 h-6 bg-[#cc4b24] rounded-full opacity-20"></div>
+              {/* <div className="absolute top-6 left-6 w-2 h-8 bg-[#f1be49] rounded-full opacity-30"></div> */}
+              {/* <div className="absolute bottom-6 right-6 w-1 h-6 bg-[#cc4b24] rounded-full opacity-20"></div> */}
               
               <div className="flex justify-center mb-8">
                 {/* Golden circle for avatar */}

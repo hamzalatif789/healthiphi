@@ -52,7 +52,7 @@ export function FaqSection() {
                 className="bg-white border-[#f6ecdc] rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-2 relative group"
               >
                 {/* Subtle decorative accent */}
-                <div className="absolute top-4 right-6 w-1 h-6 bg-[#f1be49] rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                {/* <div className="absolute top-4 right-6 w-1 h-6 bg-[#f1be49] rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div> */}
                 
                 <AccordionTrigger className="text-left font-medium text-black hover:text-[#cc4b24] transition-colors duration-300 py-6 pr-8 text-lg leading-relaxed hover:no-underline">
                   {faq.question}
@@ -62,7 +62,7 @@ export function FaqSection() {
                 </AccordionContent>
                 
                 {/* Bottom decorative accent */}
-                <div className="absolute bottom-4 left-6 w-2 h-2 bg-[#cc4b24] rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                {/* <div className="absolute bottom-4 left-6 w-2 h-2 bg-[#cc4b24] rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div> */}
               </AccordionItem>
             ))}
           </Accordion>

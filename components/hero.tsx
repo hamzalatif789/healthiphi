@@ -54,7 +54,7 @@ export function Hero() {
           </div>
 
           {/* Podcast Player with enhanced styling */}
-          <div className="mt-12 w-full max-w-2xl ">
+          <div className="mt-12 w-full max-w-2xl shadow-lg rounded-3xl bg-white p-8 relative group">
             <PodcastPlayer />
           </div>
         </div>

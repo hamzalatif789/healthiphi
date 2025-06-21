@@ -22,7 +22,7 @@ export default function ApplyPage() {
       <main className="container mx-auto px-4 py-12 max-w-2xl">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <div className="bg-[#fefbea] px-10 py-8 rounded-3xl inline-block mb-8 border border-[#f6ecdc] shadow-sm">
+          <div className="bg-white px-10 py-8 rounded-3xl inline-block mb-8 border border-[#f6ecdc] shadow-sm">
             <h1 className="text-4xl md:text-5xl font-light text-black tracking-tight mb-4">
               Join the Healthiphi Team
             </h1>
@@ -34,8 +34,8 @@ export default function ApplyPage() {
               Apply to be part of Iceland's health revolution.
             </p>
             
-            <div className="bg-[#fff1d4] px-6 py-4 rounded-2xl border border-[#f6ecdc] inline-block">
-              <p className="text-lg font-medium text-[#317039]">
+            <div className="bg-white px-6 py-4 rounded-2xl border border-[#f6ecdc] inline-block">
+              <p className="text-lg font-medium text-black">
                 It takes just 10 minutes.
               </p>
             </div>

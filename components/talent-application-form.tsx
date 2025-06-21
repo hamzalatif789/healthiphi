@@ -212,7 +212,7 @@ export function TalentApplicationForm() {
       <div className="container px-4 md:px-6 mx-auto max-w-2xl">
         <Card className="bg-white border-[#f6ecdc] shadow-lg">
           <CardHeader className="pb-6">
-            <div className="bg-[#fefbea] px-8 py-4 rounded-2xl border border-[#f6ecdc] shadow-sm mb-4">
+            <div className=" px-8 py-4 rounded-2xl border  shadow-sm mb-4">
               <CardTitle className="text-2xl md:text-3xl font-light text-black tracking-tight">
                 Application Form
               </CardTitle>

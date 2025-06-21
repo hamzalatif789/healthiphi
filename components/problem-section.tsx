@@ -27,10 +27,10 @@ function FlipCard({ title, description, stats }: FlipCardProps) {
         {/* Front - Clean white card with subtle accents */}
         <Card className="absolute w-full h-full backface-hidden bg-white border-[#f6ecdc] shadow-lg hover:shadow-xl transition-all duration-300">
           <CardContent className="flex flex-col items-center justify-center h-full p-8 text-center relative">
-            <div className="absolute top-4 left-4 w-2 h-8 bg-[#f1be49] rounded-full opacity-30"></div>
+            {/* <div className="absolute top-4 left-4 w-2 h-8 bg-[#f1be49] rounded-full opacity-30"></div> */}
             <h3 className="text-xl font-light mb-4 text-black leading-tight">{title}</h3>
             <p className="text-black opacity-75 font-light leading-relaxed">{description}</p>
-            <div className="absolute bottom-4 right-4 w-1 h-4 bg-[#cc4b24] rounded-full opacity-20"></div>
+            {/* <div className="absolute bottom-4 right-4 w-1 h-4 bg-[#cc4b24] rounded-full opacity-20"></div> */}
           </CardContent>
         </Card>
 
@@ -40,8 +40,8 @@ function FlipCard({ title, description, stats }: FlipCardProps) {
             <div className="bg-white border-2 border-[#f1be49] text-black px-8 py-6 rounded-2xl shadow-sm">
               <p className="text-3xl font-light">{stats}</p>
             </div>
-            <div className="absolute top-6 right-6 w-3 h-3 bg-[#f1be49] rounded-full opacity-40"></div>
-            <div className="absolute bottom-6 left-6 w-2 h-2 bg-[#cc4b24] rounded-full opacity-30"></div>
+            {/* <div className="absolute top-6 right-6 w-3 h-3 bg-[#f1be49] rounded-full opacity-40"></div> */}
+            {/* <div className="absolute bottom-6 left-6 w-2 h-2 bg-[#cc4b24] rounded-full opacity-30"></div> */}
           </CardContent>
         </Card>
       </motion.div>
