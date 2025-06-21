@@ -35,9 +35,9 @@ function FlipCard({ title, description, stats }: FlipCardProps) {
         </Card>
 
         {/* Back - Desert sand background with elegant stats */}
-        <Card className="absolute w-full h-full backface-hidden rotate-y-180 bg-[#fefbea] border-[#f6ecdc] shadow-lg">
+        <Card className="absolute w-full h-full backface-hidden rotate-y-180  border-[#f6ecdc] shadow-lg">
           <CardContent className="flex flex-col items-center justify-center h-full p-8 text-center relative">
-            <div className="bg-white border-2 border-[#f1be49] text-black px-8 py-6 rounded-2xl shadow-sm">
+            <div className="bg-white border-2  text-black px-8 py-6 rounded-2xl shadow-sm">
               <p className="text-3xl font-light">{stats}</p>
             </div>
             {/* <div className="absolute top-6 right-6 w-3 h-3 bg-[#f1be49] rounded-full opacity-40"></div> */}

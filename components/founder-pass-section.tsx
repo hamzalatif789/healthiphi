@@ -43,7 +43,7 @@ export function FounderPassSection() {
       <div className="container px-4 md:px-6 mx-auto">
         {/* Section header with luxury spa styling */}
         <div className="text-center mb-16">
-          <div className="bg-[#fefbea] px-10 py-6 rounded-3xl inline-block mb-6 border border-[#f6ecdc] shadow-sm">
+          <div className=" px-10 py-6 rounded-3xl inline-block mb-6 border border-[#f6ecdc] shadow-sm">
             <h2 className="text-3xl md:text-4xl font-light text-black tracking-tight">{t("founder.title")}</h2>
           </div>
           <p className="text-xl text-black max-w-3xl mx-auto font-light leading-relaxed opacity-80">
