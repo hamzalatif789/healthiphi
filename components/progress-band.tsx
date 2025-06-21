@@ -71,8 +71,8 @@ export function ProgressBand() {
             </div>
 
             {/* Subtle decorative accents around the circle */}
-            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-1 h-4 bg-[#f1be49] rounded-full opacity-40"></div>
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#cc4b24] rounded-full opacity-30"></div>
+            {/* <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-1 h-4 bg-[#f1be49] rounded-full opacity-40"></div> */}
+            {/* <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#cc4b24] rounded-full opacity-30"></div> */}
           </div>
 
           <div className="max-w-md text-center space-y-4">
